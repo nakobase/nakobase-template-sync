@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/nakobase/nakobase-template-sync/compare/v1.1.0...v1.1.1) (2026-02-03)
+
+
+### Bug Fixes
+
+* repo url in package.json ([78f7b6c](https://github.com/nakobase/nakobase-template-sync/commit/78f7b6c31fc87e698e12e8a5ece92aab91f66ea9))
+
 # [1.1.0](https://github.com/NakoBase/nakobase-template-sync/compare/v1.0.5...v1.1.0) (2026-02-03)
 
 
