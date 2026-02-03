@@ -1,4 +1,4 @@
-import { select } from '@inquirer/prompts';
+import { confirm, select } from '@inquirer/prompts';
 
 export const promptForAction = async (): Promise<string> => {
   const choices = [
@@ -11,5 +11,12 @@ export const promptForAction = async (): Promise<string> => {
   return select({
     message: 'Which templates do you want to sync?',
     choices,
+  });
+};
+
+export const promptForOverwrite = async (): Promise<boolean> => {
+  return confirm({
+    message: 'Overwrite existing files?',
+    default: false,
   });
 };

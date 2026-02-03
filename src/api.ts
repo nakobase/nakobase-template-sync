@@ -3,11 +3,20 @@ import { TemplateFileModel } from './model.js';
 import { loadTokenFromConfig } from './config.js';
 import { GH_BASE_PATH, GH_BRANCH, GH_OWNER, GH_REPO } from './constants.js';
 
-const token = loadTokenFromConfig();
+let octokit: Octokit | null = null;
 
-const octokit = new Octokit({
-  auth: token,
-});
+const getOctokit = (): Octokit => {
+  if (octokit) {
+    return octokit;
+  }
+
+  const token = loadTokenFromConfig();
+  octokit = new Octokit({
+    auth: token,
+  });
+
+  return octokit;
+};
 
 type FetchFilesFromGithubParams = {
   owner?: string;
@@ -21,11 +30,11 @@ export const fetchFilesFromRepo = async ({
   repo = GH_REPO,
   branch = GH_BRANCH,
   filePath = GH_BASE_PATH,
-}: FetchFilesFromGithubParams): Promise<TemplateFileModel[] | null> => {
+}: FetchFilesFromGithubParams): Promise<TemplateFileModel[]> => {
   const TemplateFiles: TemplateFileModel[] = [];
 
   try {
-    const response = await octokit.repos.getContent({
+    const response = await getOctokit().repos.getContent({
       owner,
       repo,
       path: filePath,
@@ -50,8 +59,8 @@ export const fetchFilesFromRepo = async ({
 
     return TemplateFiles;
   } catch (error) {
-    console.log(error);
-    return null;
+    const message = error instanceof Error ? error.message : String(error);
+    throw new Error(`Failed to fetch files from GitHub: ${message}`);
   }
 };
 

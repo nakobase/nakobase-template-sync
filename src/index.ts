@@ -5,20 +5,29 @@ import {
   syncCommitlintTemplate,
   syncGithubTemplates,
 } from './templateService.js';
-import { promptForAction } from './prompt.js';
+import { promptForAction, promptForOverwrite } from './prompt.js';
 
 const main = async () => {
   const action = await promptForAction();
+  const args = process.argv.slice(2);
+  const hasOverwriteFlag = args.includes('--overwrite');
+  const hasNoOverwriteFlag = args.includes('--no-overwrite');
 
   switch (action) {
     case 'automated-release':
-      await syncAutomatedReleaseTemplate();
+      await syncAutomatedReleaseTemplate(
+        hasNoOverwriteFlag ? false : hasOverwriteFlag ? true : await promptForOverwrite()
+      );
       break;
     case 'github-templates':
-      await syncGithubTemplates();
+      await syncGithubTemplates(
+        hasNoOverwriteFlag ? false : hasOverwriteFlag ? true : await promptForOverwrite()
+      );
       break;
     case 'commitlint':
-      await syncCommitlintTemplate();
+      await syncCommitlintTemplate(
+        hasNoOverwriteFlag ? false : hasOverwriteFlag ? true : await promptForOverwrite()
+      );
       break;
     case 'cancel':
       console.log('Bye!');
@@ -27,6 +36,7 @@ const main = async () => {
 };
 
 main().catch((error) => {
-  console.error('An error occurred:', error);
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(`An error occurred: ${message}`);
   process.exit(1);
 });
