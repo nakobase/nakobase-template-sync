@@ -7,3 +7,10 @@ This is a simple CLI tool to sync the [nakobase-project-template](https://github
 ```bash
 $ npx @nakobase/nakobase-template-sync
 ```
+
+## Options
+
+```bash
+$ npx @nakobase/nakobase-template-sync --overwrite
+$ npx @nakobase/nakobase-template-sync --no-overwrite
+```
