@@ -19,11 +19,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NakoBase/nakobase-template-sync.git"
+    "url": "https://github.com/nakobase/nakobase-template-sync.git"
   },
-  "homepage": "https://github.com/NakoBase/nakobase-template-sync#readme",
+  "homepage": "https://github.com/nakobase/nakobase-template-sync#readme",
   "bugs": {
-    "url": "https://github.com/NakoBase/nakobase-template-sync/issues"
+    "url": "https://github.com/nakobase/nakobase-template-sync/issues"
   },
   "publishConfig": {
     "access": "public",
