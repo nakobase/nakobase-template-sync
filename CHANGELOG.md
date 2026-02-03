@@ -1,3 +1,15 @@
+# [1.1.0](https://github.com/NakoBase/nakobase-template-sync/compare/v1.0.5...v1.1.0) (2026-02-03)
+
+
+### Bug Fixes
+
+* update command handling for improved functionality ([f76308b](https://github.com/NakoBase/nakobase-template-sync/commit/f76308b121e4e9e3ccec7e23f6d75bc29603d1b3))
+
+
+### Features
+
+* add overwrite option for template synchronization and improve error handling ([bb4337d](https://github.com/NakoBase/nakobase-template-sync/commit/bb4337de39fb50fe7070f5aa66dc2c67b5812279))
+
 ## [1.0.5](https://github.com/NakoBase/nakobase-template-sync/compare/v1.0.4...v1.0.5) (2024-08-23)
 
 
